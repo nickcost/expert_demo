@@ -7,7 +7,9 @@ before_action :authenticate_user!
   # GET /signups
   # GET /signups.json
   def index
-    @signups = Signup.all
+    @signups = Signup.paginate(:page => params[:page], :per_page => 1)
+    
+  #Post.paginate(:page => params[:page])
   end
 
   # GET /signups/1
@@ -31,7 +33,7 @@ before_action :authenticate_user!
 
     respond_to do |format|
       if @signup.save
-        format.html { redirect_to @signup, notice: 'Signup was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Signup was successfully created.' }
         format.json { render :show, status: :created, location: @signup }
       else
         format.html { render :new }
