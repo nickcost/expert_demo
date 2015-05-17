@@ -7,8 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  
+  <div class="container">
+  
+   <div id="header">
+	<h1>Name of Website</h1>
+    <% if current_user %>
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> 
+    <% else %>
+      <%= link_to('Sign In', new_user_session_path) %>
+      <%= link_to('Register', new_user_registration_path) %>
+    <% end %>
+  </div>
+  
 
-<%= yield %>
+<div id="nav">
+	<ul>
+		<li>option1</li>
+		<li>option2</li>
+		<li>option3</li>
+		<li>option4</li>
+	</ul>
+</div>
 
+	<%= yield %>
+</div>
 </body>
 </html>
